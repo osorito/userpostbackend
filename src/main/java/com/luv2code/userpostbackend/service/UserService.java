@@ -50,5 +50,16 @@ public class UserService {
 		return token;
 		
 	}
+	
+	public User getUserById(String email)
+	{
+		Optional<User> op = userRepository.findById(email);
+		if(op.isEmpty())
+		{
+			throw new RuntimeException("User not found. Id - " + email);
+		}
+		User user = (User)op.get();
+		return user;
+	}
 
 }
